@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Intellitest</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="/static/css/style2.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style>
+.table-wrapper-scroll-y {
+display: block;
+max-height: 600px;
+overflow-y: auto;
+-ms-overflow-style: -ms-autohiding-scrollbar;
+} 
+</style>
+</head>
+<body>
+<div class="col-sm-10 col-md-10 col-lg-10 col-xs-10">
+<div class="table-wrapper-scroll-y">
+
+<br><br><br><br>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+         	  <tr>
+		  <th> testcaseid </th>
+		  <th> 100 </th>
+		  <th> 90_99 </th>
+		  <th> 80_89</th>
+		  </tr>
+	</thead>
+		
+		 {% for key,value  in a.items() %}
+		 
+		                   <tr>
+		                   <th>   {{key}}  </th>
+		                   <td>  {{value[0]}}  </td> 
+						   <td>  {{value[1]}}  </td> 
+						   <td>  {{value[2]}}  </td> 
+		                   </tr>
+		 {% endfor %}
+                 
+		 
+         </table>
+</div>  
+</div>      
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<header class=container-fluid>
+  <title>Skill Reaper</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</header>
+<style>
+.bg {
+    /* The image used */
+    background-image: url("https://techbear.com/wp-content/uploads/2017/07/business-website-background.jpg");
+
+    /* Full height */
+    height: 820px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #FFF;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    color: #FFF
+    margin-left: 50px;
+}
+.navbar-brand img {
+  height: 200%;
+  margin-right: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+
+<body class="bg">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" <font color= "white" onclick="closeNav()">&times; </font> </a><br> <br> <br>
+   <a class="navbar-brand" href="#">
+      <img classs="img-responsive" width="100px" height="34px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR67RgE_Wj2DRqUPne75EUXJrbMchuuj2FoF_ZotY-QIbw6eMMLKQ">
+   </a>
+  <a href="#">{{k}}</a> <br> <br> <br> <br> <br>
+  <a href="{{url_for('loginn')}}"><font size ="4"> LOGOUT </font> </a>
+  
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()"><font color="white"> PROFILE</font></span>
+
+
+
+
+
+<div class="container">
+         <form name="Item_1"  action="{{ url_for('load') }}" method="POST" 
+         enctype = "multipart/form-data">
+          <h2> <center> <font color="white"> Update Skill Rating </font></center> </h2>
+          <h3><center> <font color="white" >Enter Rating </font> </center></h3>
+           <font color="white"><table class="table ">
+         	  <tr>
+		  <th> <b> SKILL </b></th>
+		  <th>  <b> RATING </b> </th>
+                  
+		  </tr>
+         
+          
+                {% for key,value  in result.items() %}
+                          
+                      <tr>
+                      <p> <b> <th> <font color="white"> {{ key }} </font> </th> </b></p>
+                                           <td> <font color = "black" ><select  name={{key}}> </font> 
+			   	           {% for i in range(1,6) %}    
+		      			   <option value= {{i}} ><font color = "black" >{{i}} </font> </option> 
+				           {% endfor %}
+				          </select></td>
+				          </tr>
+                    
+            
+               {% endfor %}<br> <br> <br>
+               </table>
+         
+         <button type="submit" class="btn btn-outline-success"> <font color = "black" >NEXT </font></button>
+         
+        
+</div>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>         
+</body>
+</html>

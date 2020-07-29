@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<header class=container-fluid>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</header>
+<style>
+.bg {
+    /* The image used */
+    background-image: url("https://techbear.com/wp-content/uploads/2017/07/business-website-background.jpg");
+
+    /* Full height */
+    height: 820px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bgcolor="#E6E6FA";
+}
+.cg {
+    font-family:"Helvetica Neue";
+    font-size: 14px;
+    line-height: 20px;
+    
+    }
+
+ 
+.sidenav {
+            height: 100%;
+            width: 260px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0,0,0);
+            
+           
+            transition: 0.5s;
+            padding-top: 60px;
+        } 
+
+
+</style>
+</head>
+
+
+<body class="bg cg" >
+<div class="container ">
+      
+      <h2> <b> <font color="white"> User login </font> <b> </h2>
+      <br>
+      <form action="http://localhost:5000/upload_file" method="post">
+    
+      <p > <b> <font color="white"> Username </font> </b> <input type="text" font color="black" placeholder="Username" name="username" > </p> <br>
+         
+         
+      <p <b><font color="white">Password </font>  </b><input type="password" font color="black" placeholder="Password" name="password" > </p>
+       {% with messages = get_flashed_messages(with_categories=true) %}
+	  {% if messages %}
+	    <p class=flashes>
+	    {% for category, message in messages %}
+	      <font color=red>{{ message }}</font>
+	    {% endfor %}
+	    </p>
+	  {% endif %}
+     {% endwith %}
+     
+       <br> <button type="submit" class="btn btn-outline-success"> LOGIN </button>
+ </br>
+
+
+      </form>
+     
+</div> 
+
+  
+</body>
+</html>

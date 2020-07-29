@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<header class=container-fluid>
+  <title>Skill Reaper</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</header>
+<style>
+
+.bg {
+    /* The image used */
+    background-image: url("https://techbear.com/wp-content/uploads/2017/07/business-website-background.jpg");
+
+    /* Full height */
+    height: 820px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #FFF;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    color: #FFF
+    margin-left: 50px;
+}
+.navbar-brand img {
+  height: 200%;
+  margin-right: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+
+<body class="bg">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" <font color= "white" onclick="closeNav()">&times; </font> </a><br> <br> <br>
+   <a class="navbar-brand" href="#">
+      <img classs="img-responsive" width="100px" height="34px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR67RgE_Wj2DRqUPne75EUXJrbMchuuj2FoF_ZotY-QIbw6eMMLKQ">
+   </a>
+  <a href="#">{{k}}</a> <br> <br> <br> <br> <br>
+  <a href="{{url_for('stats')}}"><font size ="4"> STATISTICS </font> </a>
+  <a href="{{url_for('loginn')}}"><font size ="4"> LOGOUT </font> </a>
+  
+</div>
+
+
+<span style="font-size:30px;cursor:pointer " onclick="openNav()"><font color= "white"> PROFILE </font> </span>
+<div class="container">
+         <h2> <center> <font color="white">EXPERTS OF  SKILL </font></center> </h2><br><br>
+         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+         <form name="Item_1" action="{{ url_for('load') }}" method="POST" 
+         enctype = "multipart/form-data">
+         
+          
+          <div style="overflow-x: auto;">
+          <font color="white"><table id="myTable" class="table table-bordered">
+         	  <tr>
+		  <th> Name </th>
+		  <th> {{a}} Rating </th>
+                  <th> Additional skills </th>
+                   <th> Download Resume </th>
+		  </tr>
+		
+		  {% for key in t["hits"]["hits"]: %}
+                             
+                         
+                                  
+		 
+		                   <tr>
+		                   <td>  {{key["_source"]["name"]}}  </th> 
+                                   
+		                   <td>  {{key["_source"]["skill_rating"][a]}} </td>
+                                   <td> {% for y in key["_source"]["skills"]: %} 
+                                                {{y}},
+                                        {% endfor %}
+				   <td>  <a href={{ url_for('fname',key=key["_source"]["filename"]  ) }} style="display:block;"> <font color="white">{{key["_source"]["filename"]}}  </font></td>
+                                   </td>
+		                   </tr>
+		             
+                          
+		 {% endfor %}
+                 
+		 
+         </table></font>
+</div>
+</div>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+</html>
+         
+          
+               
+                          
